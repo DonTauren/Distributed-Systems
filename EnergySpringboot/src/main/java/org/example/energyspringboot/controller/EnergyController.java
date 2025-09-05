@@ -20,7 +20,7 @@ import java.time.temporal.ChronoUnit;
 public class EnergyController {
 
     private final CurrentPercentageRepository currentPercentageRepository;
-    EnergyDataRepository energyDataRepository;
+    private final EnergyDataRepository energyDataRepository;
 
     public EnergyController(EnergyDataRepository energyDataRepository, CurrentPercentageRepository currentPercentageRepository) {
         this.energyDataRepository = energyDataRepository;
@@ -44,10 +44,10 @@ public class EnergyController {
     @GetMapping("/historical")
     public EnergyDataEntity getHistoricalData(
             @RequestParam("startDate")
-            @DateTimeFormat(pattern = "yyyy-mm-dd'T'HH:mm:ss") LocalDateTime startDate,
+            @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startDate,
 
             @RequestParam("endDate")
-            @DateTimeFormat(pattern = "yyyy-mm-dd'T'HH:mm:ss") LocalDateTime endDate) {
+            @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endDate) {
 
         // Wenn Zeitraum genau 1 Stunde → einzelne Stunde abfragen
         if (startDate.equals(endDate)) {
